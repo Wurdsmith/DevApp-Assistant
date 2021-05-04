@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_060438) do
+ActiveRecord::Schema.define(version: 2021_05_04_074533) do
 
   create_table "applications", force: :cascade do |t|
     t.string "job_title"
@@ -19,8 +19,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_060438) do
     t.string "notes"
     t.string "website_link"
     t.string "email_address"
-    t.string "follow_up"
-    t.string "date"
+    t.string "follow_up_date"
     t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

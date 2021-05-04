@@ -7,8 +7,7 @@ class CreateApplications < ActiveRecord::Migration[6.1]
       t.string :notes
       t.string :website_link
       t.string :email_address
-      t.string :follow_up
-      t.string :date
+      t.string :follow_up_date
       t.belongs_to :company, null: false, foreign_key: true
 
       t.timestamps

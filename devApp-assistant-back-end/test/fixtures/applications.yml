@@ -7,8 +7,7 @@ one:
   notes: MyString
   website_link: MyString
   email_address: MyString
-  follow_up: MyString
-  date: MyString
+  follow_up_date: MyString
   company: one
 
 two:
@@ -18,6 +17,5 @@ two:
   notes: MyString
   website_link: MyString
   email_address: MyString
-  follow_up: MyString
-  date: MyString
+  follow_up_date: MyString
   company: two
