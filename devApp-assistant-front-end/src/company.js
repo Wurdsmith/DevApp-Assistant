@@ -25,7 +25,8 @@ class Company {
     showCompanyApps(){
         const jobAppIndex = document.getElementById("JobAppIndex")
         debugger
-        jobAppIndex.innerHTML = ""
+        jobAppIndex.children[3].innerHTML = ""
+        this.appendCompany();
     }
 
     static fetchCompanies(){
