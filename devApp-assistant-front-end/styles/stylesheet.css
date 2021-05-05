@@ -1,0 +1,29 @@
+h1{
+    color: blue;
+    text-align: center;
+}
+  
+h2{
+    color: blue;
+    text-align: center;
+}
+
+button{
+    text-align: center; color: blue;
+    }
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#CompanyForm{
+    text-align: center;
+}
+
+#Companies{
+    text-align: center;
+}

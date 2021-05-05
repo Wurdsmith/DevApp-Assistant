@@ -21,18 +21,18 @@ class Application {
 function appendApplication(applications, element){
     const ul = document.createElement("ul");
     element.append(ul);
-    debugger
         for (let app of applications){
             const jli = document.createElement("li")
             const sli = document.createElement("li")
-            const nli = document.createElement("li")
             const wli = document.createElement("li")
             const eli = document.createElement("li")
+            const nli = document.createElement("li")
             jli.innerText = "Job Title: " + app.job_title
             sli.innerText = "Application Status: " + app.status
-            nli.innerText = "Application Notes: " + app.notes
             wli.innerText = "Application Link: " + app.website_link
             eli.innerText = "Email contact: " + app.email_address
-            ul.append(jli, sli, nli, wli, eli)
+            nli.innerText = "Application Notes: " + app.notes
+            ul.append(jli, sli, wli, eli, nli)
+            ul.style.fontSize = "medium";
         }
 }

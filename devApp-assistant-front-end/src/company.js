@@ -1,3 +1,5 @@
+const companyAdd = document.getElementById("CompanyForm")
+
 class Company {
     constructor(company){
         this.id = company.id
@@ -8,10 +10,22 @@ class Company {
     appendCompany(){
         const CompanyDiv = document.getElementById("Companies")
         const li = document.createElement("li");
+        const button = document.createElement("button");
+        const linebreak = document.createElement("br")
+        button.innerHTML = "View/Edit Application(s)"
         li.innerText = this.name;
+        button.addEventListener("click", this.showCompanyApps.bind(this))
+        li.append(linebreak);
         CompanyDiv.append(li);
-        debugger
+        li.append(button);
+        li.style.fontSize = "x-large";
         appendApplication(this.applications, li)
+    }
+
+    showCompanyApps(){
+        const jobAppIndex = document.getElementById("JobAppIndex")
+        debugger
+        jobAppIndex.innerHTML = ""
     }
 
     static fetchCompanies(){
@@ -30,6 +44,33 @@ class Company {
     }
 
 
+    static postCompany(e){
+        e.preventDefault()
+        debugger
+        const newCompany = e.target.children[1].value
+        const body = {
+            company: {
+                name: newCompany
+            }
+        }
 
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            accept: "application/json"
+            },
+            body: JSON.stringify(body)
+        }
+            e.target.reset()
+
+            fetch("http://localhost:3000/companies", options)
+            .then(resp => resp.json())
+            .then(company => {
+                let newCompany = new Company(company)
+                newCompany.appendCompany()
+            })
+    }
+        
     
 }
