@@ -1,10 +1,10 @@
 const companyAdd = document.getElementById("CompanyForm")
 
 class Company {
-    constructor(company){
-        this.id = company.id;
-        this.name = company.name;
-        this.applications = company.applications.map(app => new Application(app));
+    constructor({id, name, applications}){
+        this.id = id;
+        this.name = name;
+        this.applications = applications.map(app => new Application(app));
         this.state = true;
     }
 
