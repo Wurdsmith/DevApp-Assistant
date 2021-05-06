@@ -17,7 +17,6 @@ class Application {
         const ul = document.createElement("ul");
         const [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li"));
         const deleteApp = document.createElement("button")
-        element.append(ul)
         deleteApp.innerText = "Delete Application"
         li1.innerText = "Job Title:" + this.job_title
         li2.innerText = "Status:" + this.status 
@@ -31,7 +30,7 @@ class Application {
         ul.append(li1, li2, li3, li4, li5, li6)  
         li6.append(deleteApp)
         ul.style.fontSize = "medium";
-       // this.appendApplicationForm();
+        element.append(ul)
     }
 
     deleteApplication(ul){
@@ -47,28 +46,6 @@ class Application {
         .then(appendApplications);
         }
     
-        static appendApplicationForm(){
-            const apps = document.getElementById("applications");
-            const appForm = `
-            <h2>Create a New Application for ${this.name}</h2>
-            <form id = applicationForm>
-            <label>Job Title:</label>
-            <input type="text"><br>
-            <label>Application Status</label>
-            <input type="text"><br>
-            <label> Application Date:</label>
-            <input type="date"><br>
-            <label>Application Link(if any):</label>
-            <input type="text"><br>
-            <label>Email Contact(if any):</label>
-            <input type="text"><br>
-            <label>Notes:</label>
-            <input type= "textarea"><br>
-            <input type="submit" value="Create Application">
-            </form>`
-            apps.innerHTML = appForm;
-            document.getElementById("applicationForm").addEventListener("submit", Application.addApplication.bind(this))
-        }
     
         static appendApplications(applications, element){
             for(let app of applications){
@@ -78,13 +55,22 @@ class Application {
 
         static addApplication(e){
             e.preventDefault();
-            debugger
         const jobTitle = e.target.children[1].value;
         const status = e.target.children[4].value;
         const date = e.target.children[7].value;
+        const appLink = e.target.children[10].value;
+        const email = e.target.children[13].value;
+        const notes = e.target.children[16].value;
+        const companyId = e.target.children[18].id;
         const body = {
             application: {
-                job_title: jobTitle
+                job_title: jobTitle,
+                status: status,
+                application_date: date,
+                website_link: appLink,
+                email_address: email,
+                notes: notes,
+                company_id: companyId,
             }
         }
 
@@ -98,11 +84,12 @@ class Application {
         }
             e.target.reset();
 
-            fetch("http://localhost:3000/companies", options)
+            fetch("http://localhost:3000/applications", options)
             .then(resp => resp.json())
-            .then(company => {
-                let newCompany = new Company(company);
-                newCompany.appendCompany();
+            .then(app => {
+                const li = document.createElement("li")
+                const newApp = new Application(app);
+                newApp.appendApplication(li);
             })
 
         }

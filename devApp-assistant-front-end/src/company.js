@@ -35,7 +35,31 @@ class Company {
         const jobAppIndex = document.getElementById("JobAppIndex");
         jobAppIndex.children[3].innerHTML = "";
         this.appendCompany();
-        Application.appendApplicationForm.call(this);
+        this.appendApplicationForm();
+    }
+
+    appendApplicationForm(){
+        const apps = document.getElementById("NewApplication");
+        const appForm = `
+        <h2>Create a New Application for ${this.name}</h2>
+        <form id = applicationForm>
+        <label>Job Title:</label>
+        <input type="text"><br>
+        <label>Application Status</label>
+        <input type="text"><br>
+        <label> Application Date:</label>
+        <input type="date"><br>
+        <label>Application Link(if any):</label>
+        <input type="text"><br>
+        <label>Email Contact(if any):</label>
+        <input type="text"><br>
+        <label>Notes:</label>
+        <input type= "textarea"><br>
+        <input type= "hidden" id=${this.id}>
+        <input type="submit" value="Create Application">
+        </form>`
+        apps.innerHTML = appForm;
+        document.getElementById("applicationForm").addEventListener("submit", Application.addApplication.bind(this))
     }
 
     static fetchCompanies(){
