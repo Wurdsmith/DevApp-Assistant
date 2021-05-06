@@ -9,5 +9,14 @@ class ApplicationsController < ApplicationController
         render(json: application)
     end
 
-    
+    def create
+        application = Application.create(application_params)
+        render(json: application)
+    end
+
+    private
+
+    def application_params
+        params.require(:application).permit(:job_title, :application_date, :status, :notes, :website_link, :email_address, :follow_up_date, :company_id)
+    end
 end
