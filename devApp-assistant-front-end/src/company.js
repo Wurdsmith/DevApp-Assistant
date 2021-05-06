@@ -25,38 +25,35 @@ class Company {
         li.append(linebreak);
         CompanyDiv.append(li);
             if (!this.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
-             li.append(viewEdit)
+             li.append(viewEdit);
             }
         li.style.fontSize = "x-large";
-        Application.appendApplications(this.applications, li)
+        Application.appendApplications(this.applications, li);
     }
 
     showCompanyApps(){
-        const jobAppIndex = document.getElementById("JobAppIndex")
-        jobAppIndex.children[3].innerHTML = ""
+        const jobAppIndex = document.getElementById("JobAppIndex");
+        jobAppIndex.children[3].innerHTML = "";
         this.appendCompany();
-        Application.appendApplicationForm();
+        Application.appendApplicationForm.call(this);
     }
 
     static fetchCompanies(){
         fetch("http://localhost:3000/companies")
         .then(resp => resp.json())
-        .then(this.appendCompanies)
+        .then(this.appendCompanies);
     }
-
 
     static appendCompanies(companies){
         for (let company of companies){
             let newCompany = new Company(company);
             newCompany.appendCompany();
         }
-
     }
 
     static postCompany(e){
-        e.preventDefault()
-        debugger
-        const newCompany = e.target.children[1].value
+        e.preventDefault();
+        const newCompany = e.target.children[1].value;
         const body = {
             company: {
                 name: newCompany
@@ -71,13 +68,13 @@ class Company {
             },
             body: JSON.stringify(body)
         }
-            e.target.reset()
+            e.target.reset();
 
             fetch("http://localhost:3000/companies", options)
             .then(resp => resp.json())
             .then(company => {
-                let newCompany = new Company(company)
-                newCompany.appendCompany()
+                let newCompany = new Company(company);
+                newCompany.appendCompany();
             })
     }
         

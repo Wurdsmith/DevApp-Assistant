@@ -20,6 +20,10 @@ ul {
     list-style-type: none;
 }
 
+#applications{
+    text-align: center;
+}
+
 #CompanyForm{
     text-align: center;
 }
