@@ -14,6 +14,12 @@ class ApplicationsController < ApplicationController
         render(json: application)
     end
 
+    def destroy
+        application = Application.find_by(id: params[:id])
+        application.destroy
+        render json: {message: "Succesfully deleted!"}
+    end
+
     private
 
     def application_params

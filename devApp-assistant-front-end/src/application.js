@@ -31,15 +31,30 @@ class Application {
     appendApplication(ul){
         //The line below uses the map function to iterate over the array, creating each list item in one line.
         const [li1,li2,li3,li4,li5] = [1,2,3,4,5].map(() => document.createElement("li"));
+        const deleteApp = document.createElement("button")
+        deleteApp.innerText = "Delete Application"
         li1.innerText = "Job Title:" + this.job_title
         li2.innerText = "Status:" + this.status 
         li3.innerText = "Application Link:" + this.website_link
         li4.innerText = "Email contact:" + this.email_address
         li5.innerText = "Application Notes:" + this.notes
-        ul.append(li1, li2, li3, li4, li5)
+        deleteApp.addEventListener("click", e => {
+            this.deleteApplication(ul)
+        });
+        ul.append(li1, li2, li3, li4, li5)  
+        li5.append(deleteApp)
         ul.style.fontSize = "medium";
     };
-} 
+
+    deleteApplication(ul){
+        fetch(`http://localhost:3000/applications/${this.id}`, {
+            method:"DELETE"
+        }).then(resp => resp.json())
+        .then(a => {ul.remove()
+        })
+    }
+}
+ 
 
 
 

@@ -16,16 +16,16 @@ class Company {
         //Defines document elements for both the main page and company page.
         const CompanyDiv = document.getElementById("Companies"),
                       li = document.createElement("li"),
-                  button = document.createElement("button"),
+                viewEdit = document.createElement("button"),
                linebreak = document.createElement("br");
 
-        button.innerHTML = "View/Edit Application(s)"
+        viewEdit.innerHTML = "View/Edit Application(s)"
         li.innerText = this.name;
-        button.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState())
+        viewEdit.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState())
         li.append(linebreak);
         CompanyDiv.append(li);
             if (!this.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
-             li.append(button)
+             li.append(viewEdit)
             }
         li.style.fontSize = "x-large";
         Application.appendApplications(this.applications, li)
