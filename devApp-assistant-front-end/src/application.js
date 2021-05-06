@@ -21,18 +21,16 @@ class Application {
 function appendApplication(applications, element){
     const ul = document.createElement("ul");
     element.append(ul);
-        for (let app of applications){
-            const jli = document.createElement("li")
-            const sli = document.createElement("li")
-            const wli = document.createElement("li")
-            const eli = document.createElement("li")
-            const nli = document.createElement("li")
-            jli.innerText = "Job Title: " + app.job_title
-            sli.innerText = "Application Status: " + app.status
-            wli.innerText = "Application Link: " + app.website_link
-            eli.innerText = "Email contact: " + app.email_address
-            nli.innerText = "Application Notes: " + app.notes
-            ul.append(jli, sli, wli, eli, nli)
+    applications.map((ele) => {
+        //The line below uses the map function to iterate over the array, creating each list item in one line.
+        const [li1,li2,li3,li4,li5] = [1,2,3,4,5].map(() => document.createElement("li"));
+        li1.innerText = `Job Title: ${ele.job_title}` 
+        li2.innerText = `Application Status: ${ele.status}` 
+        li3.innerText = `Application Link: ${ele.website_link}`
+        li4.innerText = `Email contact: ${ele.email_address}`
+        li5.innerText = `Application Notes: ${ele.notes}`
+        ul.append(li1, li2, li3, li4, li5)
+    });
+
             ul.style.fontSize = "medium";
-        }
 }

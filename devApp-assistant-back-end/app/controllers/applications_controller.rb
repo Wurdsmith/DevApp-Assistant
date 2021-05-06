@@ -8,4 +8,6 @@ class ApplicationsController < ApplicationController
         application = Application.find_by(id: params[:id])
         render(json: application)
     end
+
+    
 end

@@ -2,29 +2,37 @@ const companyAdd = document.getElementById("CompanyForm")
 
 class Company {
     constructor(company){
-        this.id = company.id
-        this.name = company.name
-        this.applications = company.applications
+        this.id = company.id;
+        this.name = company.name;
+        this.applications = company.applications;
+        this.state = true;
+    }
+
+    swapButtonState(){
+        this.state = !this.state //This method changes the state of the object, and thus the visible state of the buttons when clicked.
     }
 
     appendCompany(){
-        const CompanyDiv = document.getElementById("Companies")
-        const li = document.createElement("li");
-        const button = document.createElement("button");
-        const linebreak = document.createElement("br")
+        //Defines document elements for both the main page and company page.
+        const CompanyDiv = document.getElementById("Companies"),
+                      li = document.createElement("li"),
+                  button = document.createElement("button"),
+               linebreak = document.createElement("br");
+
         button.innerHTML = "View/Edit Application(s)"
         li.innerText = this.name;
-        button.addEventListener("click", this.showCompanyApps.bind(this))
+        button.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState())
         li.append(linebreak);
         CompanyDiv.append(li);
-        li.append(button);
+            if (!this.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
+             li.append(button)
+            }
         li.style.fontSize = "x-large";
         appendApplication(this.applications, li)
     }
 
     showCompanyApps(){
         const jobAppIndex = document.getElementById("JobAppIndex")
-        debugger
         jobAppIndex.children[3].innerHTML = ""
         this.appendCompany();
     }
@@ -43,7 +51,6 @@ class Company {
         }
 
     }
-
 
     static postCompany(e){
         e.preventDefault()
@@ -73,5 +80,4 @@ class Company {
             })
     }
         
-    
 }
