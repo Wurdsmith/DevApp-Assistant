@@ -1,3 +1,4 @@
+
 class Application {
     constructor(application){
         this.id = application.id
@@ -15,22 +16,31 @@ class Application {
     .then(appendApplications)
     }
 
+    static appendApplicationForm(){
+        const apps = document.getElementById()
+    }
 
-}
+    static appendApplications(applications, element){
+        const ul = document.createElement("ul"); 
+        element.append(ul);
+        for(let app of applications){
+            app.appendApplication(ul);
+        }
+    }
 
-function appendApplication(applications, element){
-    const ul = document.createElement("ul");
-    element.append(ul);
-    applications.map((ele) => {
+    appendApplication(ul){
         //The line below uses the map function to iterate over the array, creating each list item in one line.
         const [li1,li2,li3,li4,li5] = [1,2,3,4,5].map(() => document.createElement("li"));
-        li1.innerText = `Job Title: ${ele.job_title}` 
-        li2.innerText = `Application Status: ${ele.status}` 
-        li3.innerText = `Application Link: ${ele.website_link}`
-        li4.innerText = `Email contact: ${ele.email_address}`
-        li5.innerText = `Application Notes: ${ele.notes}`
+        li1.innerText = "Job Title:" + this.job_title
+        li2.innerText = "Status:" + this.status 
+        li3.innerText = "Application Link:" + this.website_link
+        li4.innerText = "Email contact:" + this.email_address
+        li5.innerText = "Application Notes:" + this.notes
         ul.append(li1, li2, li3, li4, li5)
-    });
+        ul.style.fontSize = "medium";
+    };
+} 
 
-            ul.style.fontSize = "medium";
-}
+
+
+            

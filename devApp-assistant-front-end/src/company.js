@@ -4,7 +4,7 @@ class Company {
     constructor(company){
         this.id = company.id;
         this.name = company.name;
-        this.applications = company.applications;
+        this.applications = company.applications.map(app => new Application(app));
         this.state = true;
     }
 
@@ -28,13 +28,14 @@ class Company {
              li.append(button)
             }
         li.style.fontSize = "x-large";
-        appendApplication(this.applications, li)
+        Application.appendApplications(this.applications, li)
     }
 
     showCompanyApps(){
         const jobAppIndex = document.getElementById("JobAppIndex")
         jobAppIndex.children[3].innerHTML = ""
         this.appendCompany();
+        Application.appendApplicationForm();
     }
 
     static fetchCompanies(){
