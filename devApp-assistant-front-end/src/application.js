@@ -36,13 +36,13 @@ class Application {
     deleteApplication(ul){
         fetch(`http://localhost:3000/applications/${this.id}`, {
             method:"DELETE"
-        }).then(resp => resp.json())
+        }).then(jsonToJs)
         .then(m => ul.remove())
     }
 
     static fetchApplication() {
         fetch("http://localhost:3000/applications")
-        .then(resp => resp.json())
+        .then(jsonToJs)
         .then(appendApplications);
         }
     
@@ -85,7 +85,7 @@ class Application {
             e.target.reset();
 
             fetch("http://localhost:3000/applications", options)
-            .then(resp => resp.json())
+            .then(jsonToJs)
             .then(app => {
                 const li = document.createElement("li")
                 const newApp = new Application(app);

@@ -64,7 +64,7 @@ class Company {
 
     static fetchCompanies(){
         fetch("http://localhost:3000/companies")
-        .then(resp => resp.json())
+        .then(jsonToJs)
         .then(this.appendCompanies);
     }
 
@@ -95,7 +95,7 @@ class Company {
             e.target.reset();
 
             fetch("http://localhost:3000/companies", options)
-            .then(resp => resp.json())
+            .then(jsonToJs)
             .then(company => {
                 let newCompany = new Company(company);
                 newCompany.appendCompany();
