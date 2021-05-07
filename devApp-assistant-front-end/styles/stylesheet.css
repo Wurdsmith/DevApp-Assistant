@@ -7,11 +7,8 @@ body {
 }
 #SiteWide {
     background-color: rgb(87, 90, 90);
-    text-align: center;
     height: auto;
-    margin: 0 auto -80px; /* footer height + space */
     min-height: 100%;
-    padding: 0 0 80px; /* footer height + space */
     box-sizing: border-box;
     overflow: auto;
 }
@@ -19,7 +16,7 @@ body {
 h1{
     color: rgb(0, 0, 0);
 }
-  
+
 h2{
     color: rgb(0, 0, 0);
 }
@@ -30,7 +27,6 @@ button{
 
 li {
     list-style-type: none;
-    text-align: center;
 }
 
 ul {
@@ -41,22 +37,65 @@ footer{
     background-color: rgb(87, 90, 90);
 }
 
-#JobAppIndex{
-    text-align: center;
-}
-#NewApplication{
-    text-align: center;
-    align-items: center;
+#backButton{
+    color: rgb(0, 0, 0);
+    margin-left: 50px;
+    font-size: large;
 }
 
+/* #JobAppIndex{
+}
+#NewApplication{
+} */
+
 #CompanyForm{
-    text-align: center;
+    padding: 1em;
 }
 
 #Companies{
-    text-align: center;
-    background-color: cadetblue;
+    background-color: #fff;
+    padding: 1em;
 }
+
+#back {
+    cursor:pointer;
+    color:rgb(22, 155, 207);
+    text-decoration:underline;
+    background-color:rgb(87, 90, 90);
+}
+
+#viewEdit{
+    margin: 10px;
+    font-size: medium;
+}
+
+#AppList{
+    margin: auto;
+    margin-bottom: 16px;
+    background-color: #f0f0f0;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+#AppList > li{
+    text-align: left;
+    display:flex;
+}
+
+.jobP{
+    margin-left: 8px;
+}
+#DeleteBtn {
+    background-color: #b92121;
+    color: white;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 4px 12px;
+}
+
+#DeleteBtn:hover{
+    background-color: darkblue;
+} 
 
 form {
     width: 80%;

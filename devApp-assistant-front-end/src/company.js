@@ -1,4 +1,6 @@
 const companyAdd = document.getElementById("CompanyForm")
+const back = document.createElement("a")
+
 
 class Company {
     constructor({id, name, applications}){
@@ -16,28 +18,38 @@ class Company {
     appendCompany(){
         //Defines document elements for both the main page and company page.
         const CompanyDiv = document.getElementById("Companies"),
-                      li = document.createElement("li"),
+                      div = document.createElement("div"),
                 viewEdit = document.createElement("button"),
-               linebreak = document.createElement("br");
-        viewEdit.innherHTML = "class= CompanyButton"
-        viewEdit.innerText = "View/Edit Application(s)"
-        li.innerText = this.name;
-        viewEdit.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState())
-        li.append(linebreak);
-        CompanyDiv.append(li);
+                companyTitle = document.createElement("h2");
+        viewEdit.innerText = "View/Edit Application(s)";
+        viewEdit.id = "viewEdit";
+        companyTitle.innerText = this.name;
+        div.id = "companydiv"
+        viewEdit.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState());
+        CompanyDiv.append(companyTitle);
+        companyTitle.id = "companyTitle";
+        CompanyDiv.append(div);
             if (!this.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
-             li.append(viewEdit);
+                div.append(viewEdit);
             }
-        li.style.fontSize = "x-large";
-        Application.appendApplications(this.applications, li);
+        div.style.fontSize = "x-large";
+        Application.appendApplications(this.applications, div);
     }
 
     showCompanyApps(){
         const jobAppIndex = document.getElementById("JobAppIndex");
-        jobAppIndex.children[3].innerHTML = "";
+        jobAppIndex.children[2].innerHTML = "";
+        const jobForm = document.getElementById("headline")
+        back.id = "back"
+        back.innerText = "Return Home"
+        //jobForm.innerHTML += "<br>"
+        jobForm.append(back)
         this.appendCompany();
         this.appendApplicationForm();
+        back.addEventListener("click", returntoHome)
     }
+
+    
 
     appendApplicationForm(){
         const apps = document.getElementById("NewApplication");
@@ -75,6 +87,12 @@ class Company {
         for (let company of companies){
             let newCompany = new Company(company);
             newCompany.appendCompany();
+        }
+    }
+
+    static showCompanies(){
+        for (let company of Company.allCompanies){
+            company.appendCompany();
         }
     }
 

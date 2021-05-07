@@ -18,19 +18,20 @@ class Application {
         const ul = document.createElement("ul");
         const [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li"));
         const deleteApp = document.createElement("button")
+        ul.id = "AppList";
+        deleteApp.id = "DeleteBtn";
         deleteApp.innerText = "Delete Application"
-        li1.innerText = "Job Title: " + this.job_title
-        li2.innerText = "Status: " + this.status 
-        li3.innerText = "Date Applied: " + this.application_date
-        li4.innerText = "Application Link: " + this.website_link
-        li5.innerText = "Email contact: " + this.email_address
-        li6.innerText = "Application Notes: " + this.notes
+        li1.innerHTML = `<h5>Job Title:</h5> <p class= "jobP">${this.job_title}</p>`
+        li2.innerHTML = `<h5>Status:</h5><p class= "jobP">${this.status}</p>`
+        li3.innerHTML = `<h5>Date Applied:</h5> <p class= "jobP">${this.application_date}</p>`
+        li4.innerHTML = `<h5>Application Link:</h5> <p class= "jobP">${this.website_link}</p>`
+        li5.innerHTML = `<h5>Email contact:</h5> <p class= "jobP">${this.email_address}</p>`
+        li6.innerHTML = `<h5>Application Notes:</h5> <p class= "jobP">${this.notes}</p>`
         deleteApp.addEventListener("click", e => {
             this.deleteApplication(ul)
         });
         ul.append(li1, li2, li3, li4, li5, li6)  
-        li6.innerHTML = "<br>"
-        li6.append(deleteApp)
+        ul.append(deleteApp)
         ul.style.fontSize = "medium";
         element.append(ul)
     }
@@ -40,6 +41,7 @@ class Application {
             method:"DELETE"
         }).then(jsonToJs)
         .then(m => ul.remove())
+        Application.allApplications = Application.allApplications.filter(app => app.id !== this.id)
     }
 
     static allApplications = []
