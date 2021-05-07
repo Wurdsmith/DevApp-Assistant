@@ -89,7 +89,8 @@ class Application {
             .then(app => {
                 const li = document.createElement("li")
                 const newApp = new Application(app);
-                newApp.appendApplication(li);
+                Company.appendCompanies;
+                location.reload()
             })
 
         }

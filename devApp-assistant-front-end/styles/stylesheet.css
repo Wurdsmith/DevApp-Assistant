@@ -1,15 +1,15 @@
 h1{
-    color: blue;
+    color: rgb(0, 0, 0);
     text-align: center;
 }
   
 h2{
-    color: blue;
+    color: rgb(0, 0, 0);
     text-align: center;
 }
 
 button{
-    text-align: center; color: blue;
+    text-align: center; color: rgb(0, 0, 0);
     }
 
 li {
@@ -18,6 +18,14 @@ li {
 
 ul {
     list-style-type: none;
+}
+
+footer{
+    background-color: rgb(87, 90, 90);
+}
+
+#SiteWide{
+    background-color: rgb(87, 90, 90);
 }
 
 #NewApplication{
@@ -30,4 +38,31 @@ ul {
 
 #Companies{
     text-align: center;
+    background-color: cadetblue;
 }
+
+form {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  label,
+  input {
+    display: inline-block;
+  }
+  
+  label {
+    width: 30%;
+    text-align: right;
+  }
+  
+  label+input {
+    width: 30%;
+ 
+    margin: 0 30% 0 4%;
+  }
+
+  footer{
+      text-align: center;
+  }
+
