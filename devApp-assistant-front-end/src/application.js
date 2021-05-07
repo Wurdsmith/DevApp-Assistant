@@ -9,6 +9,7 @@ class Application {
         this.email_address = application.email_address;
         this.notes = application.notes;
         this.company_id = application.company_id;
+        Application.allApplications.push(this);
     }
 
 
@@ -18,16 +19,17 @@ class Application {
         const [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li"));
         const deleteApp = document.createElement("button")
         deleteApp.innerText = "Delete Application"
-        li1.innerText = "Job Title:" + this.job_title
-        li2.innerText = "Status:" + this.status 
-        li3.innerText = "Date Applied:" + this.application_date
-        li4.innerText = "Application Link:" + this.website_link
-        li5.innerText = "Email contact:" + this.email_address
-        li6.innerText = "Application Notes:" + this.notes
+        li1.innerText = "Job Title: " + this.job_title
+        li2.innerText = "Status: " + this.status 
+        li3.innerText = "Date Applied: " + this.application_date
+        li4.innerText = "Application Link: " + this.website_link
+        li5.innerText = "Email contact: " + this.email_address
+        li6.innerText = "Application Notes: " + this.notes
         deleteApp.addEventListener("click", e => {
             this.deleteApplication(ul)
         });
         ul.append(li1, li2, li3, li4, li5, li6)  
+        li6.innerHTML = "<br>"
         li6.append(deleteApp)
         ul.style.fontSize = "medium";
         element.append(ul)
@@ -39,6 +41,8 @@ class Application {
         }).then(jsonToJs)
         .then(m => ul.remove())
     }
+
+    static allApplications = []
 
     static fetchApplication() {
         fetch("http://localhost:3000/applications")
@@ -53,8 +57,8 @@ class Application {
             }
         }
 
-        static addApplication(e){
-            e.preventDefault();
+    static addApplication(e){
+         e.preventDefault();
         const jobTitle = e.target.children[1].value;
         const status = e.target.children[4].value;
         const date = e.target.children[7].value;
@@ -63,16 +67,16 @@ class Application {
         const notes = e.target.children[16].value;
         const companyId = e.target.children[18].id;
         const body = {
-            application: {
-                job_title: jobTitle,
-                status: status,
-                application_date: date,
-                website_link: appLink,
-                email_address: email,
-                notes: notes,
-                company_id: companyId,
-            }
+        application: {
+            job_title: jobTitle,
+            status: status,
+            application_date: date,
+            website_link: appLink,
+            email_address: email,
+            notes: notes,
+            company_id: companyId,
         }
+    }
 
         const options = {
             method: "POST",
@@ -87,10 +91,11 @@ class Application {
             fetch("http://localhost:3000/applications", options)
             .then(jsonToJs)
             .then(app => {
-                const li = document.createElement("li")
+                const li = document.createElement("li");
                 const newApp = new Application(app);
-                Company.appendCompanies;
-                location.reload()
+                const matchCompany = Company.allCompanies.filter(company => company.id === newApp.company_id);
+                matchCompany[0].showCompanyApps();
+                
             })
 
         }

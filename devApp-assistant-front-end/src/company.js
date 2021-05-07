@@ -6,6 +6,7 @@ class Company {
         this.name = name;
         this.applications = applications.map(app => new Application(app));
         this.state = true;
+        Company.allCompanies.push(this);
     }
 
     swapButtonState(){
@@ -18,8 +19,8 @@ class Company {
                       li = document.createElement("li"),
                 viewEdit = document.createElement("button"),
                linebreak = document.createElement("br");
-
-        viewEdit.innerHTML = "View/Edit Application(s)"
+        viewEdit.innherHTML = "class= CompanyButton"
+        viewEdit.innerText = "View/Edit Application(s)"
         li.innerText = this.name;
         viewEdit.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState())
         li.append(linebreak);
@@ -61,6 +62,8 @@ class Company {
         apps.innerHTML = appForm;
         document.getElementById("applicationForm").addEventListener("submit", Application.addApplication.bind(this))
     }
+
+    static allCompanies = []
 
     static fetchCompanies(){
         fetch("http://localhost:3000/companies")

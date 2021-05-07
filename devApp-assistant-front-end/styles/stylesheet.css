@@ -1,19 +1,36 @@
+html, body {
+    height: 100%;
+}
+body {
+    margin:0px;
+    padding: 0px;
+}
+#SiteWide {
+    background-color: rgb(87, 90, 90);
+    text-align: center;
+    height: auto;
+    margin: 0 auto -80px; /* footer height + space */
+    min-height: 100%;
+    padding: 0 0 80px; /* footer height + space */
+    box-sizing: border-box;
+    overflow: auto;
+}
+
 h1{
     color: rgb(0, 0, 0);
-    text-align: center;
 }
   
 h2{
     color: rgb(0, 0, 0);
-    text-align: center;
 }
 
 button{
-    text-align: center; color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     }
 
 li {
     list-style-type: none;
+    text-align: center;
 }
 
 ul {
@@ -24,12 +41,12 @@ footer{
     background-color: rgb(87, 90, 90);
 }
 
-#SiteWide{
-    background-color: rgb(87, 90, 90);
+#JobAppIndex{
+    text-align: center;
 }
-
 #NewApplication{
     text-align: center;
+    align-items: center;
 }
 
 #CompanyForm{
