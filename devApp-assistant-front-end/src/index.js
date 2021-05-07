@@ -7,7 +7,7 @@ function jsonToJs(resp){
 }
 
 function returntoHome(){
-    const jobAppIndex = document.getElementById("JobAppIndex");
-    jobAppIndex.children[2].innerHTML = "";
+    const jobAppIndex = document.getElementById("BodyContainer");
+    jobAppIndex.children[0].innerHTML = "";
     Company.showCompanies()
 }

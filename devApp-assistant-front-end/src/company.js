@@ -37,9 +37,10 @@ class Company {
     }
 
     showCompanyApps(){
-        const jobAppIndex = document.getElementById("JobAppIndex");
-        jobAppIndex.children[2].innerHTML = "";
-        const jobForm = document.getElementById("headline")
+        const jobAppIndex = document.getElementById("BodyContainer");
+        console.log(jobAppIndex.children)
+        jobAppIndex.children[0].innerHTML = "";
+        const jobForm = document.getElementById("FormContainer")
         back.id = "back"
         back.innerText = "Return Home"
         //jobForm.innerHTML += "<br>"
