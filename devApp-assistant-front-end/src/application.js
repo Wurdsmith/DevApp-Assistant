@@ -42,6 +42,7 @@ class Application {
         }).then(jsonToJs)
         .then(m => ul.remove())
         Application.allApplications = Application.allApplications.filter(app => app.id !== this.id)
+        this.showCompanyApps()
     }
 
     static allApplications = []
@@ -93,11 +94,10 @@ class Application {
             fetch("http://localhost:3000/applications", options)
             .then(jsonToJs)
             .then(app => {
-                const li = document.createElement("li");
                 const newApp = new Application(app);
-                const matchCompany = Company.allCompanies.filter(company => company.id === newApp.company_id);
+                const matchCompany = Company.allCompanies.filter(company => company.id === newApp.company_id);  
                 matchCompany[0].showCompanyApps();
-                
+                console.log(newApp)
             })
 
         }

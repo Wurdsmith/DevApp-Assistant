@@ -36,14 +36,12 @@ class Company {
         Application.appendApplications(this.applications, div);
     }
 
-    showCompanyApps(){
+    showCompanyApps(){ 
         const jobAppIndex = document.getElementById("BodyContainer");
-        console.log(jobAppIndex.children)
         jobAppIndex.children[0].innerHTML = "";
         const jobForm = document.getElementById("FormContainer")
         back.id = "back"
         back.innerText = "Return Home"
-        //jobForm.innerHTML += "<br>"
         jobForm.append(back)
         this.appendCompany();
         this.appendApplicationForm();
@@ -56,10 +54,10 @@ class Company {
         const apps = document.getElementById("NewApplication");
         const appForm = `
         <h2>Create a New Application for ${this.name}</h2>
-        <form id = applicationForm>
+        <form id = ApplicationForm>
         <label>Job Title:</label>
         <input type="text"><br>
-        <label>Application Status</label>
+        <label>Application Status:</label>
         <input type="text"><br>
         <label> Application Date:</label>
         <input type="date"><br>
@@ -70,10 +68,10 @@ class Company {
         <label>Notes:</label>
         <input type= "textarea"><br>
         <input type= "hidden" id=${this.id}>
-        <input type="submit" value="Create Application">
+        <input id=ApplicationSubmit type="submit" value="Create Application">
         </form>`
         apps.innerHTML = appForm;
-        document.getElementById("applicationForm").addEventListener("submit", Application.addApplication.bind(this))
+        document.getElementById("ApplicationForm").addEventListener("submit", Application.addApplication.bind(this))
     }
 
     static allCompanies = []
