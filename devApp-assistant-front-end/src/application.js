@@ -42,8 +42,9 @@ class Application {
         }).then(jsonToJs)
         .then(m => ul.remove())
         Application.allApplications = Application.allApplications.filter(app => app.id !== this.id)
-        this.showCompanyApps()
+        this.appendApplication()
     }
+
 
     static allApplications = []
 

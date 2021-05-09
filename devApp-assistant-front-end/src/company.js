@@ -6,7 +6,7 @@ class Company {
     constructor({id, name, applications}){
         this.id = id;
         this.name = name;
-        this.applications = applications.map(app => new Application(app));
+        this._applications = applications.map(app => new Application(app));
         this.state = true;
         Company.allCompanies.push(this);
     }
@@ -37,15 +37,16 @@ class Company {
     }
 
     showCompanyApps(){ 
+        this.applications;
         const jobAppIndex = document.getElementById("BodyContainer");
         jobAppIndex.children[0].innerHTML = "";
-        const jobForm = document.getElementById("FormContainer")
-        back.id = "back"
-        back.innerText = "Return Home"
-        jobForm.append(back)
+        const jobForm = document.getElementById("FormContainer");
+        back.id = "back";
+        back.innerText = "Return Home";
+        jobForm.append(back);
         this.appendCompany();
         this.appendApplicationForm();
-        back.addEventListener("click", returntoHome)
+        back.addEventListener("click", returntoHome);
     }
 
     
@@ -72,6 +73,10 @@ class Company {
         </form>`
         apps.innerHTML = appForm;
         document.getElementById("ApplicationForm").addEventListener("submit", Application.addApplication.bind(this))
+    }
+
+    get applications() {
+        return Application.allApplications.filter(app => app.company_id === this.id)
     }
 
     static allCompanies = []
