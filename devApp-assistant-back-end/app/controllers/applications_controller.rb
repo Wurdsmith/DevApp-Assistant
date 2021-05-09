@@ -20,6 +20,13 @@ class ApplicationsController < ApplicationController
         render json: {message: "Succesfully deleted!"}
     end
 
+    def update
+        application = Application.find_by(id: params[:id])
+        application.update(application_params)
+        render(json:application)
+    end
+
+
     private
 
     def application_params

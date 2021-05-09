@@ -23,7 +23,7 @@ class Application {
         deleteApp.id = "DeleteBtn";
         deleteApp.innerText = "Delete Application"
         editApp.innerText = "Edit Application"
-        editApp.id = "Edit"
+        editApp.id = "EditBtn"
         li1.innerHTML = `<h5>Job Title:</h5> <p class= "jobP">${this.job_title}</p>`
         li2.innerHTML = `<h5>Status:</h5><p class= "jobP">${this.status}</p>`
         li3.innerHTML = `<h5>Date Applied:</h5> <p class= "jobP">${this.application_date}</p>`
@@ -39,8 +39,9 @@ class Application {
             ul.append(editApp);
         }
         ul.style.fontSize = "medium";
-        element.append(ul)
-        editApp.addEventListener()
+        element.append(ul);
+        editApp.addEventListener("click", e => {
+            this.renderEditForm()});
     }
 
     deleteApplication(ul){
@@ -54,6 +55,84 @@ class Application {
         }
     }
 
+    renderEditForm(){
+        jobAppIndex.children[0].innerHTML = "";
+        const apps = document.getElementById("Companies");
+        const appForm = `
+            <h2>Edit Your Application for ${this.name}</h2>
+            <form id = ApplicationUpdate> 
+            <label>Job Title:</label>
+            <input type="text" placeholder= "${this.job_title}"><br>
+            <label>Current application status:</label>
+            <select id="status" name="status" size="1">
+                <option value="Application submitted">Application submitted</option>
+                <option value="Application received">Application received</option>
+                <option value="Interview(s) requested">Interview(s) requested</option>
+                <option value="Interview(s) scheduled">Interview(s) scheduled</option>
+                <option value="Interview(s) conducted">Interview(s) conducted</option>
+                <option value="Awaiting hiring decision">Awaiting hiring decision</option>
+            </select>
+            <br>
+            <label> Application Date:</label>
+            <input type="date" placeholder= "${this.application_date}"><br>
+            <label>Application Link(if any):</label>
+            <input type="text" placeholder= "${this.website_link}"><br>
+            <label>Email Contact(if any):</label>
+            <input type="text" placeholder= "${this.email_address}"><br>
+            <label>Notes:</label>
+            <input type= "textarea" placeholder= "${this.notes}"><br>
+            <input type= "hidden" id=${this.id}>
+            <input id= ApplicationSubmit type="submit" value="Update Application">
+            </form>`
+        apps.innerHTML = appForm;
+        document.getElementById("ApplicationUpdate").addEventListener("submit", this.editApplication.bind(this));
+    }
+
+    editApplication(e){
+        e.preventDefault();
+       const jobTitle = e.target.children[1].value;
+       const status = e.target.children[4].value;
+       const date = e.target.children[7].value;
+       const appLink = e.target.children[10].value;
+       const email = e.target.children[13].value;
+       const notes = e.target.children[16].value;
+       const companyId = e.target.children[18].id;
+       const body = {
+            application: {
+                job_title: jobTitle,
+                status: status,
+                application_date: date,
+                website_link: appLink,
+                email_address: email,
+                notes: notes,
+                company_id: companyId,
+            }
+         }
+
+       const options = {
+           method: "PATCH",
+           headers: {
+               "Content-Type": "application/json",
+           accept: "application/json"
+           },
+           body: JSON.stringify(body)
+       }
+
+        fetch(`http://localhost:3000/applications/${this.id}`, options)
+           .then(jsonToJs)
+           .then(newApp => {
+               let application = Application.allApplications.find(app => app.id === newApp.id)
+               application.job_title = newApp.job_title
+               application.status = newApp.status
+               application.application_date = newApp.application_date
+               application.website_link = newApp.website_link
+               application.email_address = newApp.email_address
+               application.notes = newApp.notes
+                const matchCompany = Company.allCompanies.filter(company => company.id === newApp.company_id);
+                matchCompany[0].showCompanyApps();
+           });
+
+        }
 
     static allApplications = []
 
@@ -101,7 +180,7 @@ class Application {
         }
             e.target.reset();
 
-            fetch("http://localhost:3000/applications", options)
+        fetch("http://localhost:3000/applications", options)
             .then(jsonToJs)
             .then(app => {
                 const newApp = new Application(app);
