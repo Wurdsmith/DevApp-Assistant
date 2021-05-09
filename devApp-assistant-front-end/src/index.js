@@ -11,6 +11,8 @@ function jsonToJs(resp){
 }
 
 function returntoHome(){
+    const appForm = document.getElementById("NewApplication");
+    appForm.innerHTML = "";
     Window.state = true;
     const jobAppIndex = document.getElementById("BodyContainer");
     jobAppIndex.children[0].innerHTML = "";
