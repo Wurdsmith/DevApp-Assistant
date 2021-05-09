@@ -1,5 +1,5 @@
-const companyAdd = document.getElementById("CompanyForm")
-const back = document.createElement("a")
+const jobAppIndex = document.getElementById("BodyContainer");
+const jobForm = document.getElementById("FormContainer");
 
 
 class Company {
@@ -7,42 +7,47 @@ class Company {
         this.id = id;
         this.name = name;
         this._applications = applications.map(app => new Application(app));
-        this.state = true;
         Company.allCompanies.push(this);
-    }
-
-    swapButtonState(){
-        this.state = !this.state //This method changes the state of the object, and thus the visible state of the buttons when clicked.
     }
 
     appendCompany(){
         //Defines document elements for both the main page and company page.
         const CompanyDiv = document.getElementById("Companies"),
-                      div = document.createElement("div"),
+                     div = document.createElement("div"),
                 viewEdit = document.createElement("button"),
-                companyTitle = document.createElement("h2");
+            companyTitle = document.createElement("h2"),
+           deleteCompany = document.createElement("button");
         viewEdit.innerText = "View/Edit Application(s)";
-        viewEdit.id = "viewEdit";
+        viewEdit.id = "ViewEdit";
         companyTitle.innerText = this.name;
-        div.id = "companydiv"
-        viewEdit.addEventListener("click", this.showCompanyApps.bind(this), this.swapButtonState());
+        div.id = "CompanyDiv"
         CompanyDiv.append(companyTitle);
-        companyTitle.id = "companyTitle";
+        companyTitle.id = "CompanyTitle";
+        deleteCompany.id = "DeleteCompanyBtn"
+        deleteCompany.innerText = "Delete Company and all Applications"
+        
         CompanyDiv.append(div);
-            if (!this.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
+            if (Window.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
                 div.append(viewEdit);
+
+            }
+            if(!Window.state){
+                companyTitle.append(deleteCompany)
             }
         div.style.fontSize = "x-large";
         Application.appendApplications(this.applications, div);
+        viewEdit.addEventListener("click", this.showCompanyApps.bind(this))
+        deleteCompany.addEventListener("click", e => {
+            this.deleteCompany()
+        });
     }
 
     showCompanyApps(){ 
-        this.applications;
-        const jobAppIndex = document.getElementById("BodyContainer");
+        Window.state=false;
         jobAppIndex.children[0].innerHTML = "";
-        const jobForm = document.getElementById("FormContainer");
-        back.id = "back";
+        back.id = "Back";
         back.innerText = "Return Home";
+       //debugger
         jobForm.append(back);
         this.appendCompany();
         this.appendApplicationForm();
@@ -50,16 +55,23 @@ class Company {
     }
 
     
-
     appendApplicationForm(){
         const apps = document.getElementById("NewApplication");
         const appForm = `
         <h2>Create a New Application for ${this.name}</h2>
-        <form id = ApplicationForm>
+        <form id = ApplicationForm> 
         <label>Job Title:</label>
         <input type="text"><br>
-        <label>Application Status:</label>
-        <input type="text"><br>
+        <label>Current application status:</label>
+        <select id="status" name="status" size="1">
+            <option value="Application submitted">Application submitted</option>
+            <option value="Application received">Application received</option>
+            <option value="Interview(s) requested">Interview(s) requested</option>
+            <option value="Interview(s) scheduled">Interview(s) scheduled</option>
+            <option value="Interview(s) conducted">Interview(s) conducted</option>
+            <option value="Awaiting hiring decision">Awaiting hiring decision</option>
+        </select>
+        <br>
         <label> Application Date:</label>
         <input type="date"><br>
         <label>Application Link(if any):</label>
@@ -73,6 +85,17 @@ class Company {
         </form>`
         apps.innerHTML = appForm;
         document.getElementById("ApplicationForm").addEventListener("submit", Application.addApplication.bind(this))
+    }
+
+    deleteCompany(){
+        if (window.confirm("Permanently delete this company and its applications?")) {
+        fetch(`http://localhost:3000/companies/${this.id}`, {
+            method:"DELETE"
+        }).then(jsonToJs)
+        .then(m => console.log(m));
+        Company.allCompanies = Company.allCompanies.filter(company => company.id !== this.id);
+        returntoHome();
+        }
     }
 
     get applications() {
@@ -100,6 +123,7 @@ class Company {
         }
     }
 
+
     static postCompany(e){
         e.preventDefault();
         const newCompany = e.target.children[1].value;
@@ -123,7 +147,7 @@ class Company {
             .then(jsonToJs)
             .then(company => {
                 let newCompany = new Company(company);
-                newCompany.appendCompany();
+                newCompany.showCompanyApps();
             })
     }
         

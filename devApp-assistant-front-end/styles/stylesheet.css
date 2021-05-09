@@ -2,40 +2,14 @@ html, body {
     height: 100%;
     width: 100%;
 }
-body {
-    margin:0px;
-    padding: 0px;
-}
+
 #SiteWide {
     background-color: #1a1a1a;
-    height: auto;
-    min-height: 100%;
-    box-sizing: border-box;
-    overflow: auto;
 }
 
 h1, h2 {
     color: #fff;
 }
-
-li, ul {
-    list-style-type: none;
-}
-
-footer{
-    background-color: #86868b;
-}
-
-#backButton{
-    color: rgb(0, 0, 0);
-    margin-left: 50px;
-    font-size: large;
-}
-
-/* #JobAppIndex{
-}
-#NewApplication{
-} */
 
 #Title{
     font-size: 64px;
@@ -55,7 +29,7 @@ footer{
 }
 
 .companySubmit{
-    background-color: rgb(32, 80, 168);
+    background-color: #084b99;
     color: #fff;
     border-radius: 8px;
     margin-left: 8px;
@@ -70,6 +44,7 @@ footer{
 
 #FormContainer{
     text-align:  center;
+    margin: 12px;
 }
 
 #Companies{
@@ -77,15 +52,29 @@ footer{
     padding: 1em;
 }
 
-#back {
+    #DeleteCompanyBtn{
+        background-color: #2c1b1b;
+        font-size: large;
+        float: right;
+        color: white;
+        border-radius: 8px;
+        padding: 4px 12px;
+    }
+
+    #DeleteCompanyBtn:hover{
+        background-color: #b80c06;
+    } 
+
+#Back {
     cursor:pointer;
     color:rgb(22, 155, 207);
     text-decoration:underline;
     background-color:#1a1a1a;
     font-size: 24px;
+
 }
 
-#viewEdit{
+#ViewEdit{
     margin: 10px;
     font-size: medium;
 }
@@ -99,11 +88,11 @@ footer{
 }
 
 #AppList > li{
-    text-align: left;
+    text-align: leftip;
     display:flex;
 }
 
-    #companyTitle{
+    #CompanyTitle{
         color: #1a1a1a;
     }
 
@@ -114,18 +103,26 @@ footer{
 
 #DeleteBtn {
     background-color: #2c1b1b;
+    float: right;
     color: white;
-    margin-top: 20px;
     border-radius: 8px;
     padding: 4px 12px;
 }
 
 #DeleteBtn:hover{
-    background-color: rgb(184, 12, 6);
+    background-color: #b80c06;
 } 
 
+#ViewEdit{
+    background-color: #2c1b1b;
+    color: white;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 4px 12px;
+}
 #NewApplication{
-text-align: center;
+    text-align: center;
+    padding: 12px;
 }
 
 #ApplicationForm{
@@ -134,15 +131,16 @@ text-align: center;
     text-align: right;
 }
 
-#ApplicationSubmit{
+    #ApplicationSubmit{
     color: #fff;
-    background-color: rgb(32, 80, 168);
-    border-radius: 8px;
-}
+    background-color: #084b99;
+    border-radius: 16px;
+    }
 
-  footer{
-      text-align: center;
-      background-color: #1a1a1a;
-      color: #fff;
-  }
+footer{
+    text-align: center;
+    background-color: #084b99;
+    color: #fff;
+    padding: 8px;
+}
 

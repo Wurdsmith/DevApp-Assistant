@@ -15,12 +15,15 @@ class Application {
 
     appendApplication(element){
         //The line below uses the map function to iterate over the array, creating each list item in one line.
-        const ul = document.createElement("ul");
-        const [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li"));
-        const deleteApp = document.createElement("button")
+                         const ul = document.createElement("ul"),
+        [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li")),
+                        deleteApp = document.createElement("button"),
+                          editApp = document.createElement("button");
         ul.id = "AppList";
         deleteApp.id = "DeleteBtn";
         deleteApp.innerText = "Delete Application"
+        editApp.innerText = "Edit Application"
+        editApp.id = "Edit"
         li1.innerHTML = `<h5>Job Title:</h5> <p class= "jobP">${this.job_title}</p>`
         li2.innerHTML = `<h5>Status:</h5><p class= "jobP">${this.status}</p>`
         li3.innerHTML = `<h5>Date Applied:</h5> <p class= "jobP">${this.application_date}</p>`
@@ -30,19 +33,25 @@ class Application {
         deleteApp.addEventListener("click", e => {
             this.deleteApplication(ul)
         });
-        ul.append(li1, li2, li3, li4, li5, li6)  
-        ul.append(deleteApp)
+        ul.append(li1, li2, li3, li4, li5, li6);
+        if (!Window.state){
+            ul.append(deleteApp);
+            ul.append(editApp);
+        }
         ul.style.fontSize = "medium";
         element.append(ul)
+        editApp.addEventListener()
     }
 
     deleteApplication(ul){
+        if (window.confirm("Permanently delete this application?")) {
         fetch(`http://localhost:3000/applications/${this.id}`, {
             method:"DELETE"
         }).then(jsonToJs)
         .then(m => ul.remove())
         Application.allApplications = Application.allApplications.filter(app => app.id !== this.id)
         this.appendApplication()
+        }
     }
 
 
