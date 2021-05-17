@@ -6,12 +6,12 @@ class Company {
     constructor({id, name, applications}){
         this.id = id;
         this.name = name;
-        this._applications = applications.map(app => new Application(app));
-        Company.allCompanies.push(this);
+        this._applications = applications.map(app => new Application(app)); //This line creates a new front-end application object each time a company is created.
+        Company.allCompanies.push(this); //Adds the newly created company object into the allCompanies array for tracking on the front end.
     }
 
     appendCompany(){
-        //Defines document elements for both the main page and company page.
+        //Defines document elements for both the main page and company page, depending on the value of "this."
         const CompanyDiv = document.getElementById("Companies"),
                      div = document.createElement("div"),
                 viewEdit = document.createElement("button"),
@@ -47,7 +47,6 @@ class Company {
         jobAppIndex.children[0].innerHTML = "";
         back.id = "Back";
         back.innerText = "Return Home";
-       //debugger
         jobForm.append(back);
         this.appendCompany();
         this.appendApplicationForm();
@@ -61,7 +60,7 @@ class Company {
         <h2>Create a New Application for ${this.name}</h2>
         <form id = ApplicationForm> 
         <label>Job Title:</label>
-        <input type="text"><br>
+        <input type="text" required><br>
         <label>Current application status:</label>
         <select id="status" name="status" size="1">
             <option value="Application submitted">Application submitted</option>
@@ -73,7 +72,7 @@ class Company {
         </select>
         <br>
         <label> Application Date:</label>
-        <input type="date"><br>
+        <input type="date" required><br>
         <label>Application Link(if any):</label>
         <input type="text"><br>
         <label>Email Contact(if any):</label>

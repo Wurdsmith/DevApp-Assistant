@@ -9,7 +9,7 @@ class Application {
         this.email_address = application.email_address;
         this.notes = application.notes;
         this.company_id = application.company_id;
-        Application.allApplications.push(this);
+        Application.allApplications.push(this); //Adds the newly created application object into the allAplications array for tracking on the front end.
     }
 
 
@@ -65,7 +65,7 @@ class Application {
             `<h2 id= AppHeadline>Edit Your Application for ${matchCompany[0].name}</h2>
             <form id = ApplicationUpdate> 
             <label>Job Title:</label>
-            <input type="text" placeholder= "${this.job_title}"><br>
+            <input type="text" placeholder= "${this.job_title}" required><br>
             <label>Current application status:</label>
             <select id="status" name="status" size="1">
                 <option value="Application submitted">Application submitted</option>
@@ -77,7 +77,7 @@ class Application {
             </select>
             <br>
             <label> Application Date:</label>
-            <input type="date" placeholder= "${this.application_date}"><br>
+            <input type="date" placeholder= "${this.application_date}" required><br>
             <label>Application Link(if any):</label>
             <input type="text" placeholder= "${this.website_link}"><br>
             <label>Email Contact(if any):</label>
