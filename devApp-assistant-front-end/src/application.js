@@ -60,7 +60,6 @@ class Application {
         jobAppIndex.children[0].innerHTML = "";
         const apps = document.getElementById("Companies");
         const matchCompany = Company.allCompanies.filter(company => company.id === this.company_id); //Matches the current application to its company object.
-        debugger
         const appForm = 
             `<h2 id= AppHeadline>Edit Your Application for ${matchCompany[0].name}</h2>
             <form id = ApplicationUpdate> 

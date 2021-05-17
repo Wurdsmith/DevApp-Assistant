@@ -27,7 +27,7 @@ class Company {
         deleteCompany.innerText = "Delete Company and all Applications"
         
         CompanyDiv.append(div);
-            if (Window.state) { //Because the EventListener changed the state during the compiling phase, I had to use the bang operator here.
+            if (Window.state) {
                 div.append(viewEdit);
 
             }
@@ -122,7 +122,6 @@ class Company {
             company.appendCompany();
         }
     }
-
 
     static postCompany(e){
         e.preventDefault();
