@@ -14,9 +14,9 @@ class Application {
 
 
     appendApplication(element){
-        //The line below uses the map function to iterate over the array, creating each list item in one line.
                          const ul = document.createElement("ul"),
-        [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li")),
+        //The line below uses the map function to iterate over the array, creating each list item in one line.
+        [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li")), 
                         deleteApp = document.createElement("button"),
                           editApp = document.createElement("button");
         ul.id = "AppList";
@@ -54,7 +54,8 @@ class Application {
         this.appendApplication()
         }
     }
-
+   
+    //Appends a form for editing a specific job application.
     renderEditForm(){
         jobAppIndex.children[0].innerHTML = "";
         const apps = document.getElementById("Companies");
@@ -88,15 +89,16 @@ class Application {
         document.getElementById("ApplicationUpdate").addEventListener("submit", this.editApplication.bind(this));
     }
 
+    
     editApplication(e){
         e.preventDefault();
-       const jobTitle = e.target.children[1].value;
-       const status = e.target.children[4].value;
-       const date = e.target.children[7].value;
-       const appLink = e.target.children[10].value;
-       const email = e.target.children[13].value;
-       const notes = e.target.children[16].value;
-       const companyId = e.target.children[18].id;
+       const jobTitle = e.target.children[1].value,
+               status = e.target.children[4].value,
+                 date = e.target.children[7].value,
+              appLink = e.target.children[10].value,
+                email = e.target.children[13].value,
+                notes = e.target.children[16].value,
+            companyId = e.target.children[18].id;
        const body = {
             application: {
                 job_title: jobTitle,
@@ -151,13 +153,13 @@ class Application {
 
     static addApplication(e){
          e.preventDefault();
-        const jobTitle = e.target.children[1].value;
-        const status = e.target.children[4].value;
-        const date = e.target.children[7].value;
-        const appLink = e.target.children[10].value;
-        const email = e.target.children[13].value;
-        const notes = e.target.children[16].value;
-        const companyId = e.target.children[18].id;
+         const jobTitle = e.target.children[1].value,
+                 status = e.target.children[4].value,
+                   date = e.target.children[7].value,
+                appLink = e.target.children[10].value,
+                  email = e.target.children[13].value,
+                  notes = e.target.children[16].value,
+              companyId = e.target.children[18].id;
         const body = {
         application: {
             job_title: jobTitle,
