@@ -12,8 +12,8 @@ class Application {
         Application.allApplications.push(this); //Adds the newly created application object into the allAplications array for tracking on the front end.
     }
 
-
-    appendApplication(element){
+    //Appends a given company's applications on both the main page and a specific company page.
+    appendApplication(element){ 
                          const ul = document.createElement("ul"),
         //The line below uses the map function to iterate over the array, creating each list item in one line.
         [li1,li2,li3,li4,li5,li6] = [1,2,3,4,5,6].map(() => document.createElement("li")), 
@@ -59,7 +59,7 @@ class Application {
     renderEditForm(){
         jobAppIndex.children[0].innerHTML = "";
         const apps = document.getElementById("Companies");
-        const matchCompany = Company.allCompanies.filter(company => company.id === this.company_id);
+        const matchCompany = Company.allCompanies.filter(company => company.id === this.company_id); //Matches the current application to its company object.
         debugger
         const appForm = 
             `<h2 id= AppHeadline>Edit Your Application for ${matchCompany[0].name}</h2>

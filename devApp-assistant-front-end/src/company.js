@@ -42,6 +42,7 @@ class Company {
         });
     }
 
+    //Clears the DOM and renders all applications for a particular company.
     showCompanyApps(){ 
         Window.state=false;
         jobAppIndex.children[0].innerHTML = "";
@@ -53,7 +54,7 @@ class Company {
         back.addEventListener("click", returntoHome);
     }
 
-    
+    //Appends a form for creating a job application for a specific company.
     appendApplicationForm(){
         const apps = document.getElementById("NewApplication");
         const appForm = `
