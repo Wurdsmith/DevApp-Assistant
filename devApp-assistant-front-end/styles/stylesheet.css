@@ -133,6 +133,15 @@ h2 {
     padding: 4px 12px;
 }
 
+#AppHeadline{
+    color: #1a1a1a;
+}
+#AppplicationUpdate{
+    color: #fff;
+    display: inline-block;
+    text-align: right;
+}
+
 #ApplicationSubmit{
     background-color: #2c1b1b;
     color: white;
