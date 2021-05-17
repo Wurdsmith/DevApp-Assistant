@@ -92,7 +92,7 @@ class Company {
         fetch(`http://localhost:3000/companies/${this.id}`, {
             method:"DELETE"
         }).then(jsonToJs)
-        .then(m => console.log(m));
+        .then(m => alert(m.message));
         Company.allCompanies = Company.allCompanies.filter(company => company.id !== this.id);
         returntoHome();
         }
